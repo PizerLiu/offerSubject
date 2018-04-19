@@ -1,0 +1,127 @@
+public class class3 {
+
+    static class ListNode{
+        ListNode ListNext = null;
+        Object data;
+
+        public Object getData() {
+            return data;
+        }
+        public void setData(Object data) {
+            this.data = data;
+        }
+        public ListNode getListNext() {
+            return ListNext;
+        }
+        public void setListNext(ListNode listNext) {
+            ListNext = listNext;
+        }
+    }
+
+    public static class LinkList{
+        private ListNode first = null;
+
+        public void addNode(Object data){
+
+            if(this.first == null){
+                ListNode one = new ListNode();
+                one.data = data;
+                one.ListNext = null;
+                first = one;
+            }else{
+                ListNode one = new ListNode();
+                one.data = data;
+                one.ListNext = null;
+                //增加到链表尾部
+                ListNode next = first;
+                while(next.ListNext != null){
+                    next = next.ListNext;
+                }
+                next.ListNext = one;
+            }
+        }
+
+        public void insertNodeByIndex(int index,Object data){
+
+            //新节点
+            ListNode one = new ListNode();
+            one.data = data;
+            one.ListNext = null;
+
+            ListNode next = first.ListNext;
+            int length = 1;
+            while(next != null){
+                next = next.ListNext;
+                length++;
+                //找到位置
+                if(index == length){
+                    //把新节点的next改为后面next的node
+                    one.ListNext = next.ListNext;
+                    //把新节点前面一个节点的next改为新增的node
+                    next.ListNext = one;
+                    break;
+                }
+            }
+        }
+
+        public void removeNode(int index){
+            ListNode next = first.ListNext;
+            int length = 1;
+            while(next != null){
+                //往下走
+                next = next.ListNext;
+                length++;
+                if(length == index){
+                    //找到要删除位置，更改要删除node前一个node的next
+                    next.ListNext = next.ListNext.ListNext;
+                    break;
+                }
+            }
+        }
+
+        public ListNode ListReversal(){
+
+            if(first == null){
+                return null;
+            }
+            ListNode rHead = null;
+            ListNode prior = null;
+
+            while(first != null){
+                ListNode next = first.ListNext;
+
+                if(next == null){
+                    rHead = first;
+                }
+
+                first.ListNext = prior;
+
+                prior = first;
+                first = next;
+            }
+
+            return rHead;
+
+        }
+    }
+
+    public static void main(String[] args){
+        LinkList x = new LinkList();
+
+        for(int i=0;i<5;i++){
+            x.addNode(i);
+        }
+
+        ListNode xcxc =  x.ListReversal();
+
+        while(true){
+            System.out.println(xcxc.data);
+            if(xcxc.ListNext == null){
+                break;
+            }
+            xcxc = xcxc.ListNext;
+        }
+
+
+    }
+}
