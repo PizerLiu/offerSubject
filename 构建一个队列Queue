@@ -1,0 +1,49 @@
+import java.util.Arrays;
+
+public class class3 {
+
+    static class QueuePizer{
+        int size = 0;
+        Object[] queue = null;
+
+        public int length(){
+            return size;
+        }
+
+        private void ensureCapacity(int size) {
+            if (size > queue.length) {
+                int len = queue.length + 10;
+                queue = Arrays.copyOf(queue, len);
+            }
+        }
+
+        public void addQueue(int data){
+            if(queue == null){
+                queue = new Object[10];
+
+            }else{
+                size ++;
+                ensureCapacity(size+1);
+            }
+            queue[size] = data;
+        }
+
+        public Object popQueue(){
+            Object data = queue[0];
+            System.arraycopy(queue, 1, queue, 0, size-1);
+            size--;
+            return data;
+        }
+    }
+
+    public static void main(String[] args){
+        QueuePizer x = new QueuePizer();
+        for(int i =0;i<15;i++){
+            x.addQueue(i);
+        }
+        System.out.println(x.size);
+        System.out.println(x.queue[1]);
+        System.out.println(x.popQueue());
+        System.out.println(x.size);
+    }
+}
