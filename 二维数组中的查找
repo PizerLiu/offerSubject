@@ -1,0 +1,34 @@
+public class class3 {
+
+    public static void main(String[] args){
+        int[][] intx = {{1,2,8,9},{2,4,9,12},{4,7,10,13},{6,8,11,15}};
+        int c = 7;
+
+
+        for(int i =0;i<intx.length;i++){
+            int j = intx.length-1;
+
+            if(intx[i][j] < c){
+                //行的最后一个值肯定是最大的，如果小于要找的值，这行就pass
+            }else if(intx[i][j] > c){
+
+                boolean flag = false;
+                while(intx[i][j] != c){
+                    if(j==0){
+                        break;
+                    }
+                    j--;
+
+                }
+                if(intx[i][j] == c){
+                    //找到了
+                    System.out.println("找到了"+i+j);
+                }
+
+            }else{
+                //找到啦
+                System.out.println("找到了"+i+j);
+            }
+        }
+    }
+}
