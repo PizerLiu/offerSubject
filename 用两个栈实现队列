@@ -1,0 +1,36 @@
+import java.util.Stack;
+
+//两个栈实现队列功能
+public class class3 {
+
+    static class PizerQueue{
+        Stack stack1 =new Stack();
+
+        public void insert(Object data){
+            stack1.push(data);
+        }
+
+        public Object pop() throws Exception {
+            Stack stack2 =new Stack();
+
+            if(stack1.isEmpty()){
+                throw new Exception("队列为空！");
+            }
+
+            while(!stack1.isEmpty()){
+                stack2.push(stack1.pop());
+            }
+            return stack2.pop();
+        }
+
+    }
+
+    public static void main(String[] args) throws Exception {
+        PizerQueue test = new PizerQueue();
+        test.insert(1);
+        test.insert(2);
+        test.insert(3);
+
+        System.out.println(test.pop());
+    }
+}
