@@ -158,7 +158,8 @@ public class class3 {
         for(int i=0;i<LinksNumTwo.length;i++){
             linkListTwo.addNode(LinksNumTwo[i]);
         }
-
+        
+        //linkListOne合并链表linkListTwo
         class3 method = new class3();
 
         ListNode next = linkListTwo.first;
