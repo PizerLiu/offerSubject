@@ -127,6 +127,27 @@ public class class3 {
         }
         return len;
     }
+    
+    public ListNode Merge(ListNode linkNodeOne,ListNode linkNodeTwo){
+ 
+        if(linkNodeOne == null){
+            return linkNodeTwo;
+        }
+        if(linkNodeTwo == null){
+            return linkNodeOne;
+        }
+
+        ListNode mergeNode = null;
+        
+        if((Integer)linkNodeTwo.data > (Integer)linkNodeOne.data){
+            mergeNode = linkNodeOne;
+            mergeNode.ListNext = Merge(linkNodeOne.ListNext,linkNodeTwo);
+        }else{
+            mergeNode = linkNodeTwo;
+            mergeNode.ListNext = Merge(linkNodeOne,linkNodeTwo.ListNext);
+        }
+        return mergeNode;
+    }
 
     public static void main(String[] args){
         LinkList linkList = new LinkList();
@@ -159,7 +180,7 @@ public class class3 {
             linkListTwo.addNode(LinksNumTwo[i]);
         }
         
-        //linkListOne合并链表linkListTwo
+        //合并方法一：将linkListTwo中每一个node值判断插入linkListOne位置，然后根据位置再插入。
         class3 method = new class3();
 
         ListNode next = linkListTwo.first;
@@ -174,5 +195,11 @@ public class class3 {
             System.out.println("`==="+nextOne.data);
             nextOne = nextOne.ListNext;
         }
+        
+        //合并方法二
+        class3 method2 = new class3();
+        
+        method2.Merge(linkListOne.first,linkListTwo.first);
+                
     }
 }
